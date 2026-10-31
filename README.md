@@ -14,6 +14,11 @@
 来源及证据缺口见 [evidence-and-limits](references/evidence-and-limits.md)。
 示例不是实际用户记录、评测数据或有效性证明。
 
+## 免费首发候选
+
+[Psych-Aware Free](distribution/agensi-free/SKILL.md) 是独立的精简候选，包含四种可选方法，必要指令、研究边界与 MIT 文本全部内联，不依赖远程平台读取引用文件。它不包含本仓库的完整 100 条参考集合。
+首发内容核对、打包方法及尚未解决的平台许可问题见 [发布审计](docs/agensi-release-audit.md)。候选文件已准备不等于已上架或已通过平台验收。
+
 ## 本地使用
 
 以 Claude Code 为例，在仓库根目录执行：
