@@ -1,0 +1,13 @@
+{
+  "name": "Psych-Aware Free",
+  "version": "0.1.0",
+  "price": 0,
+  "category_preference": "Education & Learning",
+  "source_repository": "https://github.com/yangmengze608-afk/psych-aware-skill",
+  "summary": "Self-contained Chinese-first instructions for everyday support, study planning and clear communication, with four optional methods and inline research boundaries.",
+  "scope": "A reduced free edition, not the complete 100-entry reference collection. All operational instructions are in SKILL.md; no relative file paths, execution scripts, API keys or telemetry. Includes implementation intentions, retrieval practice, distributed practice, and factual interpretation checking with a limited reappraisal research background. No diagnosis, therapy, medication advice, clinical efficacy claim, guaranteed improvement, or always-on promise. Host behavior determines activation and persistence; cross-model and cross-language reliability have not been established.",
+  "license_note": "MIT. Copyright (c) 2026 yangmengze608-afk. Original licence and notices are included in the ZIP and inline in SKILL.md. The GitHub version remains MIT-licensed. Agensi imposes separate service and redistribution restrictions on its delivered copy; their compatibility with MIT is not represented as confirmed. No per-listing exception has been granted.",
+  "platform_delivery_status": "Not yet tested through Agensi; the platform only serves live listings. Local checks do not establish platform delivery.",
+  "publication_status": "Candidate only. Not uploaded, scanned, approved or live.",
+  "publication_gate": "Account access, informed acceptance of platform distribution terms, and platform review remain required. Do not charge, connect payouts or describe this as a full audited release."
+}

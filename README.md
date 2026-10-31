@@ -1,106 +1,57 @@
 # psych-aware
 
-> An always-on psychology mindset for AI agents. Load it once, and every response gets a little quieter, a little more human, and a little closer to what you actually need to do next.
->
-> 一个给 AI agent 用的"常驻心理学视角"。加载之后，它不是多了一个工具，而是换了一双看人的眼睛——用户感觉不到术语，只觉得这个 AI 说话让人松一口气、建议踩得准。
+面向支持 Agent Skills 的宿主，以通俗语言处理日常情绪、学习、决策与沟通需要的技能。包含 100 个编号概念条目，其中部分主题重复；不是 100 项独立有效干预，也不是经过验证的心理治疗产品。
 
-English README below · 中文说明在最后。
+## 范围
 
----
+- 先回答实际问题，必要时提供可选的小步骤。
+- 把心理解释视为待核实的可能性，不编造用户经历。
+- 默认少用术语；用户问概念或依据时解释清楚。
+- 不做诊断、用药建议或隐蔽说服。
+- 纯事实、计算和代码任务不强加情绪分析。
 
-## What it is
+`SKILL.md` 是入口，`references/` 是按需读取的教学笔记，`examples/` 是虚构示例。
+来源及证据缺口见 [evidence-and-limits](references/evidence-and-limits.md)。
+示例不是实际用户记录、评测数据或有效性证明。
 
-`psych-aware` is an [Agent Skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) — a folder with a `SKILL.md` plus a knowledge base. Once loaded, the agent:
+## 免费首发候选
 
-- **Picks up the human layer behind any question** — not just the literal ask, but the emotion, the motivation, the bias underneath.
-- **Applies 100 psychology concepts silently** — CBT, ACT/DBT, behavioral economics, social psychology, learning science, motivation research, communication research, positive psychology.
-- **Never names the concepts out loud.** The terminology stays internal. The user hears plain language and a concrete next step.
+[Psych-Aware Free](distribution/agensi-free/SKILL.md) 是独立的精简候选，包含四种可选方法，必要指令、研究边界与 MIT 文本全部内联，不依赖远程平台读取引用文件。它不包含本仓库的完整 100 条参考集合。
+首发内容核对、打包方法及尚未解决的平台许可问题见 [发布审计](docs/agensi-release-audit.md)。候选文件已准备不等于已上架或已通过平台验收。
 
-It is *not* a therapy chatbot, a diagnosis engine, or a textbook. It is a tone-of-voice and a reasoning layer.
+## 本地使用
 
-## What it is NOT
-
-- Not a replacement for a mental health professional.
-- Not a prompt library where users manually pick a card.
-- Not a list of psychology terms to recite.
-- Not dark-pattern persuasion. All techniques exist to help the user see more clearly, not to manipulate them.
-
-## Quick install
-
-Copy this folder into your agent's skills directory:
+以 Claude Code 为例，在仓库根目录执行：
 
 ```bash
-# Claude Code / any agent that reads SKILL.md
-cp -r psych-aware ~/.claude/skills/
-
-# Or point your agent at this repo's root
+mkdir -p ~/.claude/skills/psych-aware
+cp SKILL.md README.md LICENSE ~/.claude/skills/psych-aware/
+cp -R references examples ~/.claude/skills/psych-aware/
 ```
 
-Restart your session. The skill auto-loads when conversations touch human behavior, decisions, emotion, motivation, learning, relationships, or growth.
+其他宿主请按其文档配置。自动触发、按需读文件与跨轮保留均由宿主决定，不能保证加载一次后一直生效。
+主指令主要为中文；没有完成不同语言或不同模型的兼容性验证。
 
-## How it works
+## 远程分发
 
-```
-psych-aware/
-├── SKILL.md              # The core: behavior rules, tone, routing, guardrails
-├── references/           # 100 concept cards the agent consults internally
-│   ├── decision-biases.md       (10)  — loss aversion, anchoring, sunk cost…
-│   ├── social.md                (10)  — conformity, attribution error, halo…
-│   ├── cbt.md                   (10)  — thought records, defusion, exposure…
-│   ├── act-dbt.md               (10)  — acceptance, TIPP, opposite action…
-│   ├── motivation.md            (10)  — implementation intentions, BJ Fogg…
-│   ├── learning.md              (10)  — active recall, spaced repetition…
-│   ├── emotion-regulation.md     (10)  — physiological sigh, urge surfing…
-│   ├── communication.md         (10)  — NVC, Gottman repair, boundaries…
-│   ├── growth-positive.md       (10)  — three good things, flow, values…
-│   └── personality-development.md(10) — attachment, locus of control…
-└── examples/              # Few-shot dialogues showing the right tone
-```
+远程平台必须能交付 SKILL.md，并按相同路径提供引用文件；仅交付入口文本并不等于整个技能可用。
+文件不可读取时应告知限制，不得声称已查阅。
 
-The agent reads `SKILL.md` on load, then opens only the reference file that matches the user's current state (lazy-loaded, so context stays small).
+若提交市场，使用固定提交版本并保留 LICENSE。先确认平台条款如何兼容 MIT 的复制与再分发权利。
+尚未完成 Agensi 实际交付测试或平台扫描，尚未确认许可兼容；本仓库可打包不代表已经适合公开上架。
+不承诺使用效果、收入或平台背书。
 
-## The design rule everything hangs on
+## 安全和隐私
 
-**Internal jargon, plain output.**
+本项目用于教育和日常支持，不构成诊断、治疗或医疗建议。危机、急性身体症状、暴力或胁迫情境优先处理安全与专业支持。
+本包不包含执行脚本或遥测功能；宿主、远程分发平台和模型提供商可能按各自政策处理数据，不能据此宣称“零留存”或保证保密。
 
-- The agent may think "this is catastrophizing plus availability bias."
-- It may **never** say those words to the user.
-- It translates the mechanism into one concrete, human action: *"Write down three things you already know, then just read one section for 25 minutes."*
+## 验证状态
 
-If the user can name the psychology concept the agent just used, the agent failed.
+本轮修订针对内容风险、示例一致性与文件引用进行检查，未建立临床有效性或跨模型可靠性证据。
+人工阅读、少量场景检查与格式检查不能替代真实使用评估。不得借用其他仓库的结果作为本技能通过验证的依据。
 
-## Guardrails (hard-coded in SKILL.md)
+## 贡献与许可
 
-- No diagnosis, no medication advice, no "should you go off your meds."
-- Suicidal / self-harm / harm-to-others signals → immediately route to emergency hotlines, drop the role-play.
-- Never use these techniques to persuade or nudge the user into something they don't want.
-- Normal human struggles (exam anxiety, procrastination, arguments) are framed as ordinary, not pathological.
-
-## Contributing
-
-The 100 cards are a starting set. PRs welcome:
-
-- Add a missing concept to the right `references/*.md` file (follow the existing card format).
-- Add a dialogue example to `examples/`.
-- Fix tone, tighten wording, translate.
-
-Please keep the **脱术语 / plain-output** rule: examples must read like a friend talking, not a textbook.
-
----
-
-## 中文说明
-
-这个仓库做一件事：**让 AI agent 在任何对话里都自然地带一点心理学视角，但不拽术语**。
-
-- 你问代码报错，它照样直接给答案，只多一句"别急，这种错改完就过"。
-- 你说"明天考试感觉要凉"，它不讲课，只让你写下已经会的三件事、看 25 分钟一节、起来喝口水。
-- 你跟对象吵架，它先让你别发那条消息，再把"你总是不回我"换成"我有点慌，你看到时回我一个表情就好"。
-
-`references/` 里的 100 个概念是它的内功心法，不对你暴露。目录分类、安装方式、护栏规则和英文 README 一致。
-
-### 伦理声明
-本项目仅用于教育与自我提升目的，**不构成心理诊断、治疗或医疗建议**。如果你正在经历持续的情绪困扰、自伤或自杀念头，请立即联系当地心理援助热线或专业医生。技术的目的是帮你看清自己，不是替代专业帮助。
-
-## License
-
-[MIT](./LICENSE)
+贡献概念或修改效果表述时，提供可核实来源、适用范围和限制；不搬运未授权的量表、治疗手册或付费材料。
+当前许可为 [MIT](LICENSE)。须保留版权及许可声明；研究链接不表示获得原作者、学校或机构背书。
